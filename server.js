@@ -9,12 +9,24 @@ connectDB();
 
 const app = express();
 
-// ✅ CORS configuration for your live frontend
+// ✅ CORS configuration for both local and live frontend
+const allowedOrigins = [
+    // "https://micro-marketplace-client.vercel.app", // live frontend
+    "http://localhost:5173", // local frontend
+];
+
 app.use(
     cors({
-        origin: "https://micro-marketplace-client.vercel.app", // frontend URL
+        origin: function (origin, callback) {
+            // allow requests with no origin (like Postman) or if origin is in allowedOrigins
+            if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+                callback(null, true);
+            } else {
+                callback(new Error("Not allowed by CORS"));
+            }
+        },
         methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-        credentials: true, // if you need cookies/auth headers
+        credentials: true, // allow cookies/auth headers
     })
 );
 
