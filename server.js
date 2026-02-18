@@ -11,8 +11,8 @@ const app = express();
 
 // ✅ CORS configuration for both local and live frontend
 const allowedOrigins = [
-    // "https://micro-marketplace-client.vercel.app", // live frontend
     "http://localhost:5173", // local frontend
+    "https://micro-marketplace-client.vercel.app", // live frontend
 ];
 
 app.use(
@@ -29,6 +29,7 @@ app.use(
         credentials: true, // allow cookies/auth headers
     })
 );
+
 
 app.use(express.json());
 
