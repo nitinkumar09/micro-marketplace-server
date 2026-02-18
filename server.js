@@ -12,7 +12,7 @@ const app = express();
 // ✅ CORS configuration for your live frontend
 app.use(
     cors({
-        // origin: "https://micro-marketplace-client.vercel.app", // frontend URL
+        origin: "https://micro-marketplace-client.vercel.app", // frontend URL
         methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
         credentials: true, // if you need cookies/auth headers
     })
